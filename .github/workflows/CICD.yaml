@@ -117,7 +117,7 @@ jobs:
         with:
           settings: ${{steps.readsettings.outputs.Settings}}
           secrets: 'licenseFileUrl,insiderSasToken,CodeSignCertificateUrl,CodeSignCertificatePassword,KeyVaultCertificateUrl,KeyVaultCertificatePassword,KeyVaultClientId'
-          updateSettingsWithValues: $true
+          updateSettingsWithValues: 'Y'
 
       - name: Run pipeline
         uses: PooyaKharamesh/AL-Go-Actions/RunPipeline@main
