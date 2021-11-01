@@ -1,5 +1,5 @@
 # AL-Go Template
-## Per Tenant Extension Project
+## Per Tenant Extension Project v1.0
 This template repository can be used for managing Per Tenant Extensions for Business Central.
 
 Process:
