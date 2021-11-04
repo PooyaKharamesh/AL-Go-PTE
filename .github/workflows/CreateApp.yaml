@@ -27,7 +27,7 @@ jobs:
       - name: initialization
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
-          workflowName : ${{ env:GITHUB_WORKFLOW }}
+          workflowName : "CreateApp"
     outputs:
       telemetryScope: ${{ steps.initialization.outputs.telemetryScope }}
       correlationId: ${{ steps.initialization.outputs.correlationId }}
