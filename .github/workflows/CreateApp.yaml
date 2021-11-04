@@ -22,18 +22,6 @@ defaults:
     shell: PowerShell
 
 jobs:
-  initialization :
-    runs-on: windows-latest
-    outputs:
-      telemetryScope: ${{ steps.initialization.outputs.telemetryScope }}
-      correlationId: ${{ steps.initialization.outputs.correlationId }}
-    steps:
-      - name: initialization of workflow
-      - id : initialization
-      - uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
-        with: 
-          workflowName : ${{ env:GITHUB_WORKFLOW }}
-
   createApp:
     runs-on: windows-latest
     needs : [ initialization ]
