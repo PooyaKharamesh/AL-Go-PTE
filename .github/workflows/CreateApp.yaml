@@ -20,13 +20,9 @@ on:
 defaults:
   run:
     shell: PowerShell
-
 jobs:
   initialization :
     runs-on: windows-latest
-    outputs:
-      telemetryScope: ${{ steps.initialization.outputs.telemetryScope }}
-      correlationId: ${{ steps.initialization.outputs.correlationId }}
     steps:
       - name: initialization
       - uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
