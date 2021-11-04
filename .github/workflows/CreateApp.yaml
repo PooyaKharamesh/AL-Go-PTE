@@ -62,5 +62,5 @@ jobs:
         id : postProcess
         uses: PooyaKharamesh/AL-Go-Actions/workflowpostprocess@main
         with: 
-          workflowName : ${{ env:GITHUB_WORKFLOW }}
+          workflowName : "CreateApp"
           telemetryScope : ${{ steps.initialization.outputs.telemetryScope }}
