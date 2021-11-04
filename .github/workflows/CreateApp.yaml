@@ -24,7 +24,6 @@ defaults:
 jobs:
   createApp:
     runs-on: windows-latest
-    needs : [ initialization ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
