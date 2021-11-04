@@ -25,9 +25,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: initialization
-      - uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
+        uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
           workflowName : ${{ env:GITHUB_WORKFLOW }}
+    outputs:
+      telemetryScope: ${{ steps.initialization.outputs.telemetryScope }}
+      correlationId: ${{ steps.initialization.outputs.correlationId }}
 
   createApp:
     runs-on: windows-latest
