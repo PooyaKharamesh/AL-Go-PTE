@@ -43,7 +43,6 @@ jobs:
         uses: PooyaKharamesh/AL-Go-Actions/ReadSettings@main
         with:
           get: type
-          correlationId: ${{ fromJson(needs.GetCorrelationId.outputs.correlationId) }}
 
       - name: Creating a new app
         uses: PooyaKharamesh/AL-Go-Actions/CreateApp@main
