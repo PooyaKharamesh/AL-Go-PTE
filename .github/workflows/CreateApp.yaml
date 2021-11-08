@@ -62,4 +62,4 @@ jobs:
         uses: PooyaKharamesh/AL-Go-Actions/workflowpostprocess@main
         with: 
           workflowName : "CreateApp"
-          telemetryScope : ${{ steps.initialization.outputs.telemetryScope }}
+          telemetryScope : ${{ needs.initialization.outputs.telemetryScope }}
