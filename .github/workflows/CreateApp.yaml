@@ -29,7 +29,7 @@ jobs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}   
     steps:
-      - name: init
+      - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
           workflowName : "CreateApp"
@@ -37,6 +37,9 @@ jobs:
         run: echo "::set-output name=test::hello"
       - id: step2
         run: echo "::set-output name=test::world"
+      - id: testStep
+        run:  echo ${{ steps.init.outputs.telemetryScope }} ${{ steps.init.outputs.correlationId }} 
+      
 
   createApp:
     runs-on: windows-latest
