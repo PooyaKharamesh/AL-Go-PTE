@@ -57,6 +57,7 @@ jobs:
     runs-on: windows-latest
     needs : [ initialization , createApp ]
     steps:
+      - run: echo ${{needs.initialization.outputs.telemetryScope}}
       - name: Finalizing the workflow
         id : postProcess
         uses: PooyaKharamesh/AL-Go-Actions/workflowpostprocess@main
