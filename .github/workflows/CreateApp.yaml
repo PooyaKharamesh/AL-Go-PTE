@@ -60,4 +60,4 @@ jobs:
     needs : [ initialization , createApp ]
     steps:
       - name: finish
-        run: write-host "testing ${{needs.initialization.outputs.telemetryScope}} and ${{ steps.initialization.outputs.correlationId }}"
+        run: write-host "testing ${{needs.initialization.outputs.telemetryScope}} and ${{ needs.initialization.outputs.correlationId }}"
