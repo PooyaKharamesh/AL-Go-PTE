@@ -57,5 +57,5 @@ jobs:
     runs-on: windows-latest
     needs : [ initialization , createApp ]
     steps:
-      - run: echo ${{needs.initialization.outputs.telemetryScope}}
+      - run: write-host "testing ${{needs.initialization.outputs.telemetryScope}}"
 
