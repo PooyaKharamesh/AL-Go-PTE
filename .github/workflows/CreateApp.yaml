@@ -31,8 +31,6 @@ jobs:
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
           workflowName : "CreateApp"
-      - id: testStep
-        run:  echo ${{ steps.init.outputs.telemetryScope }} ${{ steps.init.outputs.correlationId }} 
 
   createApp:
     runs-on: windows-latest
