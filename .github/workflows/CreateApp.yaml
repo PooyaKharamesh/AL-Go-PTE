@@ -65,5 +65,5 @@ jobs:
     steps:
       - name: finish
         run: write-host "testing ${{needs.initialization.outputs.telemetryScope}} and ${{ steps.initialization.outputs.correlationId }}"
-      - run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
+      - run: echo ${{needs.initialization.outputs.output1}} ${{needs.initialization.outputs.output2}}
 
