@@ -61,3 +61,9 @@ jobs:
     steps:
       - name: finish
         run: write-host "testing ${{needs.initialization.outputs.telemetryScope}} and ${{ needs.initialization.outputs.correlationId }}"
+      - name: Finalizing the workflow
+        id : postProcess
+        uses: PooyaKharamesh/AL-Go-Actions/workflowpostprocess@main
+        with: 
+          workflowName : "CreateApp"
+          telemetryScope : ${{needs.initialization.outputs.telemetryScope}}
