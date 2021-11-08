@@ -25,21 +25,14 @@ jobs:
     runs-on: windows-latest
     outputs:
       telemetryScope: ${{ steps.init.outputs.telemetryScope }}
-      correlationId: ${{ steps.init.outputs.correlationId }} 
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}   
+      correlationId: ${{ steps.init.outputs.correlationId }}  
     steps:
       - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
           workflowName : "CreateApp"
-      - id: step1
-        run: echo "::set-output name=test::hello"
-      - id: step2
-        run: echo "::set-output name=test::world"
       - id: testStep
         run:  echo ${{ steps.init.outputs.telemetryScope }} ${{ steps.init.outputs.correlationId }} 
-      
 
   createApp:
     runs-on: windows-latest
@@ -68,5 +61,3 @@ jobs:
     steps:
       - name: finish
         run: write-host "testing ${{needs.initialization.outputs.telemetryScope}} and ${{ steps.initialization.outputs.correlationId }}"
-      - run: echo ${{needs.initialization.outputs.output1}} ${{needs.initialization.outputs.output2}}
-
