@@ -32,7 +32,7 @@ jobs:
         with: 
           workflowName : "DO0092"
 
-  createApp:
+  update :
     runs-on: windows-latest
     needs : [ initialization ]
     steps:
@@ -42,8 +42,8 @@ jobs:
       - name: Read settings
         uses: PooyaKharamesh/AL-Go-Actions/ReadSettings@main
         with:
+          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
           get: type
-          parentCorrelationId : ${{ needs.initialization.outputs.correlationId }}
 
       - name: Creating a new app
         uses: PooyaKharamesh/AL-Go-Actions/CreateApp@main
