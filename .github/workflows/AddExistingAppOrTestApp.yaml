@@ -15,12 +15,24 @@ defaults:
     shell: PowerShell
 
 jobs:
+  initialization :
+    runs-on: windows-latest
+    outputs:
+      telemetryScope: ${{ steps.init.outputs.telemetryScope }}
+      correlationId: ${{ steps.init.outputs.correlationId }}  
+    steps:
+      - id: init
+        uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
+        with: 
+          workflowName : "DO0092"
+
   update:
     runs-on: windows-latest
-
+    needs : [ initialization ]
     steps:
       - name: Add existing app
         uses: PooyaKharamesh/AL-Go-Actions/AddExistingApp@main
         with:
+          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}        
           url: ${{ github.event.inputs.url }}
           directCommit: ${{ github.event.inputs.directCommit }}

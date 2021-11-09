@@ -20,8 +20,20 @@ defaults:
     shell: PowerShell
 
 jobs:
+  initialization :
+    runs-on: windows-latest
+    outputs:
+      telemetryScope: ${{ steps.init.outputs.telemetryScope }}
+      correlationId: ${{ steps.init.outputs.correlationId }}  
+    steps:
+      - id: init
+        uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
+        with: 
+          workflowName : "DO0092"
+
   CreateEnvironment:
     runs-on: windows-latest
+    needs : [ initialization ]
 
     steps:
       - name: Checkout
@@ -29,12 +41,15 @@ jobs:
 
       - name: Read settings
         uses: PooyaKharamesh/AL-Go-Actions/ReadSettings@main
+        with:
+          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
 
       - name: Read secrets
         uses: PooyaKharamesh/AL-Go-Actions/ReadSecrets@main
         env:
           secrets: ${{ toJson(secrets) }}
         with:
+          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
           settingsJson: ${{ env.Settings }}
           secrets: 'adminCenterApiCredentials'
 
@@ -60,6 +75,7 @@ jobs:
       - name: Create Development Environment
         uses: PooyaKharamesh/AL-Go-Actions/CreateDevelopmentEnvironment@main
         with:
+          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
           environmentName: ${{ github.event.inputs.environmentName }} 
           reUseExistingEnvironment: ${{ github.event.inputs.reUseExistingEnvironment }} 
           adminCenterApiCredentials: ${{ env.adminCenterApiCredentials }} 

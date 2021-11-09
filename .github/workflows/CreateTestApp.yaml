@@ -24,13 +24,26 @@ defaults:
     shell: PowerShell
 
 jobs:
+  initialization :
+    runs-on: windows-latest
+    outputs:
+      telemetryScope: ${{ steps.init.outputs.telemetryScope }}
+      correlationId: ${{ steps.init.outputs.correlationId }}  
+    steps:
+      - id: init
+        uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
+        with: 
+          workflowName : "DO0092"
+
   update:
     runs-on: windows-latest
+    needs : [ initialization ]
 
     steps:
       - name: Creating a new test app
         uses: PooyaKharamesh/AL-Go-Actions/CreateApp@main
         with:
+          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
           type: 'Test App'
           publisher: ${{ github.event.inputs.publisher }}
           name: ${{ github.event.inputs.name }}
