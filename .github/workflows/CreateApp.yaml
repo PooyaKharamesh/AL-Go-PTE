@@ -32,7 +32,7 @@ jobs:
         with: 
           workflowName : "DO0092"
 
-  update :
+  createApp :
     runs-on: windows-latest
     needs : [ initialization ]
     steps:
