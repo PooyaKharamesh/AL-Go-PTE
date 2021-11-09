@@ -30,7 +30,7 @@ jobs:
       - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
-          workflowName : "CreateApp"
+          workflowName : "DO0092"
 
   createApp:
     runs-on: windows-latest
@@ -43,6 +43,7 @@ jobs:
         uses: PooyaKharamesh/AL-Go-Actions/ReadSettings@main
         with:
           get: type
+          parentCorrelationId : ${{ needs.initialization.outputs.correlationId }}
 
       - name: Creating a new app
         uses: PooyaKharamesh/AL-Go-Actions/CreateApp@main
@@ -52,6 +53,7 @@ jobs:
           publisher: ${{ github.event.inputs.publisher }}
           idrange: ${{ github.event.inputs.idrange }}
           directCommit: ${{ github.event.inputs.directCommit }}
+          parentCorrelationId : ${{ needs.initialization.outputs.correlationId }}
 
   postProcess :
     runs-on: windows-latest
@@ -61,5 +63,5 @@ jobs:
         id : postProcess
         uses: PooyaKharamesh/AL-Go-Actions/workflowpostprocess@main
         with: 
-          workflowName : "CreateApp"
+          workflowName : "DO0092"
           telemetryScope : ${{ needs.initialization.outputs.telemetryScope }}
