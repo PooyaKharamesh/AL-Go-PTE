@@ -25,7 +25,7 @@ jobs:
       - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
-          workflowName : "DO0092"
+          workflowName : "DO0096"
 
   update:
     runs-on: windows-latest
