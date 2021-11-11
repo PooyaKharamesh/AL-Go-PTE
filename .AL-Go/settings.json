@@ -3,7 +3,8 @@
     "country":  "us",
     "KeyVaultName":  "",
     "appFolders":  [
-                       "PTE1"
+                       "PTE1",
+                       "PTE1(2)"
                    ],
     "testFolders":  [
 
