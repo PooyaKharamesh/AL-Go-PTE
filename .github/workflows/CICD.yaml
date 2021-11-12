@@ -219,7 +219,7 @@ jobs:
 
   postProcess :
     runs-on: windows-latest
-    needs : [ initialization ,  Analyze, Build  ]
+    needs : [ initialization ,  Analyze, Build , Deploy ]
     steps:
       - name: Finalizing the workflow
         id : postProcess
