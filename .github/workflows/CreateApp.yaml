@@ -29,7 +29,7 @@ jobs:
       - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
         with: 
-          workflowName : "DO0092"
+          eventId : "DO0092"
 
   createApp :
     runs-on: windows-latest
@@ -62,5 +62,5 @@ jobs:
         id : postProcess
         uses: PooyaKharamesh/AL-Go-Actions/workflowpostprocess@main
         with: 
-          workflowName : "DO0092"
+          eventId : "DO0092"
           telemetryScope : ${{ needs.initialization.outputs.telemetryScope }}
