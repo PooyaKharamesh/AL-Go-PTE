@@ -6,6 +6,6 @@
                        "PTE1"
                    ],
     "testFolders":  [
-
+                        "YourAppName.Test"
                     ]
 }
