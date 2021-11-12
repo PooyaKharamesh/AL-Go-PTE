@@ -35,7 +35,6 @@ jobs:
     runs-on: windows-latest
     outputs:
       telemetryScope: ${{ steps.init.outputs.telemetryScope }}
-      correlationId: ${{ steps.init.outputs.correlationId }}  
     steps:
       - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
@@ -55,13 +54,13 @@ jobs:
       - name: Read settings
         uses: PooyaKharamesh/AL-Go-Actions/ReadSettings@main
         with:
-          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
+          parentTelemetryScope: ${{ needs.initialization.outputs.telemetryScope }}
           get: TemplateUrl,TemplateBranch
 
       - name: Check for updates to AL-Go system files
         uses: PooyaKharamesh/AL-Go-Actions/CheckForUpdates@main
         with:
-          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
+          parentTelemetryScope: ${{ needs.initialization.outputs.telemetryScope }}
           templateUrl: ${{ env.TemplateUrl }}
           templateBranch: ${{ env.TemplateBranch }}
 
@@ -97,7 +96,7 @@ jobs:
         id: createreleasenotes
         uses: PooyaKharamesh/AL-Go-Actions/CreateReleaseNotes@main
         with:
-          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
+          parentTelemetryScope: ${{ needs.initialization.outputs.telemetryScope }}
           tag_name: '${{github.event.inputs.tag}}'
 
       - name: Create release

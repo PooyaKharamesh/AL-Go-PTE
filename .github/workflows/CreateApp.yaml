@@ -25,7 +25,6 @@ jobs:
     runs-on: windows-latest
     outputs:
       telemetryScope: ${{ steps.init.outputs.telemetryScope }}
-      correlationId: ${{ steps.init.outputs.correlationId }}  
     steps:
       - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
@@ -42,7 +41,7 @@ jobs:
       - name: Read settings
         uses: PooyaKharamesh/AL-Go-Actions/ReadSettings@main
         with:
-          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
+          parentTelemetryScope: ${{ needs.initialization.outputs.telemetryScope }}
           get: type
 
       - name: Creating a new app
@@ -53,7 +52,7 @@ jobs:
           publisher: ${{ github.event.inputs.publisher }}
           idrange: ${{ github.event.inputs.idrange }}
           directCommit: ${{ github.event.inputs.directCommit }}
-          parentCorrelationId : ${{ needs.initialization.outputs.correlationId }}
+          parentTelemetryScope: ${{ needs.initialization.outputs.telemetryScope }}
 
   postProcess :
     runs-on: windows-latest

@@ -20,7 +20,6 @@ jobs:
     runs-on: windows-latest
     outputs:
       telemetryScope: ${{ steps.init.outputs.telemetryScope }}
-      correlationId: ${{ steps.init.outputs.correlationId }}  
     steps:
       - id: init
         uses: PooyaKharamesh/AL-Go-Actions/InitWorkflow@main
@@ -35,6 +34,6 @@ jobs:
       - name: Increment Version Number
         uses: PooyaKharamesh/AL-Go-Actions/IncrementVersionNumber@main
         with:
-          parentCorrelationId: ${{ needs.initialization.outputs.correlationId }}
+          parentTelemetryScope: ${{ needs.initialization.outputs.telemetryScope }}
           versionNumber: ${{ github.event.inputs.versionNumber }}
           directCommit: ${{ github.event.inputs.directCommit }}
