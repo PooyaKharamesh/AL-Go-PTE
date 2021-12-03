@@ -108,7 +108,7 @@ jobs:
           prerelease: ${{ github.event.inputs.prerelease=='Y' }}
           release_name: '${{ github.event.inputs.name }}'
           tag_name: '${{ github.event.inputs.tag }}'
-          body: ${{ steps.createreleasenotes.outputs.releaseNotes }}
+          body: ${{ (steps.createreleasenotes.outputs.releaseNotes | ConvertFrom-Json).body -replace '\\n',[System.Environment]::NewLine  }}
 
   UploadArtifacts:
     runs-on: [ windows-latest ] 
